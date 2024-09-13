@@ -1,0 +1,10 @@
+{
+  "name": "NodeJs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "O-damnpr <ni1722650@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}
