@@ -53,3 +53,14 @@ TypeScript를 지원하며, 순수 JavaScript로도 사용가능하다.
 </aside>
 
 → NestJS는 타입 **안정성과 모듈화**를 강조하며, 대규모 애플리케이션의 유지보수와 확장성을 고려한 설계 때문이다. 반면, **작은 규모의 프로젝트나 빠른 개발 속도를 원하는 경우 Express가 더 적합할 수 있다.**
+
+# nest js - request life cycle
+
+![nest js request life cycle.png](라이프사이클 그림/nest js request life cycle.png)
+
+client에서 request를 보내면 middle ware → guard → pipe 를 거쳐 요청 로직 처리 부분에서 처리가 된 후 
+
+ExceptionFilter→ Interceptor를 거쳐 클라이언트에 반환된다.
+
+*앞에 거쳐가는 부분은 필수는 아니지만 굉장히 유용하고, 요청 로직 처리 부분은 필수이다.
+  (나중에 좀 더 자세히 다룰 예정)
