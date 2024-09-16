@@ -9,7 +9,7 @@ interface Post {
   commentCount: number;
 }
 
-@Controller()
+@Controller('post')
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
