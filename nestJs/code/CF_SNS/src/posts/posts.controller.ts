@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { PostsService } from './posts.service';
 
 //nest g resource 하면 모듈을 만들 수 있다. 간편하네...
@@ -47,7 +47,13 @@ export class PostsController {
   getPosts() {
     return posts;
   }
+
   // 특정 post 가져오기
+  // GET /posts/:id 파라미터로 구분해서 가져온다
+  @Get(':id')
+  getPost(@Param('id') id: string) {
+    return posts.find((post) => post.id === +id);
+  }
   // Post 생성하기
   // Post 수정하기
   // Post 삭제하기
