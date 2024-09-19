@@ -1,5 +1,6 @@
-import { Controller, Get, NotFoundException, Param } from '@nestjs/common';
+import { Body, Controller, Get, NotFoundException, Param, Post } from '@nestjs/common';
 import { PostsService } from './posts.service';
+import { title } from 'process';
 
 //nest g resource 하면 모듈을 만들 수 있다. 간편하네...
 
@@ -12,7 +13,7 @@ interface PostModel {
   commentCount: number;
 }
 
-const posts: PostModel[] = [
+let posts: PostModel[] = [
   {
     id: 1,
     author: 'newjibs',
@@ -62,6 +63,25 @@ export class PostsController {
     return post;
   }
   // Post 생성하기
+  @Post()
+  postPosts(
+    @Body('author') author: string,
+    @Body('tilte') title: string,
+    @Body('content') content: string,
+  ) {
+    const post: PostModel = {
+      id: posts[posts.length - 1].id + 1,
+      author,
+      title,
+      content,
+      likeCount: 0,
+      commentCount: 0,
+    };
+
+    posts = [...posts, post];
+
+    return post;
+  }
   // Post 수정하기
   // Post 삭제하기
 }
