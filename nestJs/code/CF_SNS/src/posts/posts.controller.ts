@@ -122,7 +122,13 @@ export class PostsController {
   // Post 삭제하기
   @Delete(':id')
   deletePost(@Param('id') id: string) {
-    posts = posts.filter((post) => post.id !== +id);
+    const post = posts.find((post) => post.id === +id);
+
+    if (!post) {
+      throw new NotFoundException();
+    }
+
+    posts.filter((post) => post.id !== +id);
 
     return id;
   }
