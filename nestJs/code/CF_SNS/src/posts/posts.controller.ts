@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   NotFoundException,
   Param,
@@ -119,4 +120,10 @@ export class PostsController {
     return post;
   }
   // Post 삭제하기
+  @Delete(':id')
+  deletePost(@Param('id') id: string) {
+    posts = posts.filter((post) => post.id !== +id);
+
+    return id;
+  }
 }
