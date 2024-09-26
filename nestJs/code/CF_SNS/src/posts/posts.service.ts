@@ -44,7 +44,7 @@ export class PostsService {
 
   getPostById(id: number) {
     //find 함수는 값을 찾지 못하면 undifined를 반환한다.
-    const post = posts.find((post) => post.id === +id);
+    const post = posts.find((post) => post.id === id);
 
     if (!post) {
       throw new NotFoundException();
@@ -66,5 +66,41 @@ export class PostsService {
     posts = [...posts, post];
 
     return post;
+  }
+
+  updatePost(author: string, content: string, title: string, id: number) {
+    const post = posts.find((post) => post.id === id);
+
+    if (!post) {
+      throw new NotFoundException();
+    }
+
+    if (author) {
+      post.author = author;
+    }
+
+    if (title) {
+      post.title = title;
+    }
+
+    if (content) {
+      post.content = content;
+    }
+
+    posts = posts.map((prevPost) => (prevPost.id === +id ? post : prevPost));
+
+    return post;
+  }
+
+  deletePost(id: number) {
+    const post = posts.find((post) => post.id === id);
+
+    if (!post) {
+      throw new NotFoundException();
+    }
+
+    posts.filter((post) => post.id !== id);
+
+    return id;
   }
 }
