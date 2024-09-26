@@ -179,3 +179,11 @@ dist
 # .pnp.*
 
 # End of https://www.toptal.com/developers/gitignore/api/node,git,yarn
+
+# Docker 관련 파일들
+docker-data/
+postgres-data/  
+*.log           
+
+node_modules/   
+.env  
