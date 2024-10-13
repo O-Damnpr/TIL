@@ -53,11 +53,19 @@ export class PostsService {
   }
 
   async getPostById(id: number) {
-    return this.postsRepository.findOne({
+    //비동기이기 때문에 await를 하지 않으면 promiss로 반환되기 때문에 null이 아니라 에러가 잡히지 않는다.
+    const post = await this.postsRepository.findOne({
       where: {
-        id: id,
+        //키값과 밸류값의 이름이 똑같을 땐 지우고 하나만 넣으면 된다.
+        id,
       },
     });
+
+    if (!post) {
+      throw new NotFoundException();
+    }
+
+    return post;
   }
 
   createPost(author: string, title: string, content: string) {
