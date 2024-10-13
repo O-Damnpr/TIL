@@ -3,7 +3,6 @@ import {
   Controller,
   Delete,
   Get,
-  NotFoundException,
   Param,
   Post,
   Put,
@@ -30,7 +29,7 @@ export class PostsController {
   @Post()
   postPosts(
     @Body('author') author: string,
-    @Body('tilte') title: string,
+    @Body('title') title: string,
     @Body('content') content: string,
   ) {
     return this.postsService.createPost(author, title, content);
