@@ -49,18 +49,15 @@ export class PostsService {
   //컨트롤러에서 바로 반환해주기 때문에 안 붙여도 되지만, 나중에 await를 하고싶을 때가 있을 수도 있기 때문에 붙임
   async getAllPosts() {
     //레포지토리의 모든 메소드들은 async 즉 비동기이다.
-    this.postsRepository.find();
+    return this.postsRepository.find();
   }
 
-  getPostById(id: number) {
-    //find 함수는 값을 찾지 못하면 undifined를 반환한다.
-    const post = posts.find((post) => post.id === id);
-
-    if (!post) {
-      throw new NotFoundException();
-    }
-
-    return post;
+  async getPostById(id: number) {
+    return this.postsRepository.findOne({
+      where: {
+        id: id,
+      },
+    });
   }
 
   createPost(author: string, title: string, content: string) {
